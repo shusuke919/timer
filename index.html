@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <header>
+    <h1>today</h1>
+  </header>
+  <a id="timer">00:00:00</a>
+  <button id="start">スタート</button>
+  <script>
+//グローバル変数の設定
+    let start;
+    let time;
+
+document.getElementById("start").addEventListener("click",function(){
+
+   if (this.innerHTML === "スタート"){
+    start = new Date();
+
+    time = setInterval(gotimer, 10);
+
+    //ストップボタン
+   this.innerHTML = "ストップ";
+   }else {
+    //スタートボタンに戻す
+    this.innerHTML = "スタート";
+    //タイマーを止める
+    //メソッドはグローバル変数を読み込む
+    clearInterval(time);
+   }
+});
+
+//０をつける
+const addzero = function(value){
+   if(value < 10){
+     value = '0' + value;
+   }
+ return value;
+}
+
+let gotimer = function(){
+let now = new Date();
+let milli = now.getTime() - start.getTime();
+let seconds = Math.floor(milli / 1000);
+let minutes = Math.floor(seconds / 60);
+let hours = Math.floor(minutes / 60);
+
+seconds = seconds - minutes*60;
+minutes = minutes - hours*60;
+
+seconds = addzero(seconds);
+minutes = addzero(minutes);
+hours   = addzero(hours);
+
+document.getElementById("timer").innerHTML = hours + "：" + minutes + "：" + seconds;
+
+}
+
+
+
+
+///””’’文字列に入れる
+  </script>
+</body>
+</html>
