@@ -1,0 +1,2 @@
+# timer
+タイマーをJavaScriptで書いています
